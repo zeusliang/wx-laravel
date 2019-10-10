@@ -1,0 +1,10 @@
+# 设置链接
+	ln -s /var/www/html/wx-dev-laravel/wxoa /var/www/html/wxoa; \
+# 设置项目目录权限
+	chmod -R 775 /var/www/html/wxoa; \
+	chmod -R 777 /var/www/html/wxoa/storage; \
+	chmod -R 777 /var/www/html/wxoa/bootstrap/cache; \
+	chmod -R 777 /var/www/html/wxoa/apache_logs; \
+	mkdir -p /var/www/html/test/public; \
+	mkdir /var/www/html/test/apache_logs; \
+	chmod -R 777 /var/www/html/test/apache_logs;

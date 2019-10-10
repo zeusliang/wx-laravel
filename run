@@ -1,0 +1,36 @@
+#!/usr/bin/bash
+
+# 创建镜像
+function creImg(){
+	if docker build -t zeusliang:wxoa-v1 ./docker-img-builder
+	then
+		echo '镜像创建成功！'
+	else
+		echo '镜像创建失败'
+	fi
+
+
+}
+
+# 创建容器
+function creCon(){
+	host_volume=/share/core/wxoa-laravel/wx-dev-laravel/wxoa
+	con_volume=/var/www/html/wx-dev-laravel/wxoa
+	if docker images | grep wxoa-v1
+	then
+		if docker run -d -p 80:80 -p 8080:8080 --name wx-dev --privileged -v $host_volume:$con_volume zeusliang:wxoa-v1
+		then
+			echo '容器创建成功！'
+		else
+			echo '容器创建失败！'
+		fi
+	else
+		echo '指定的镜像不存在！'
+	fi
+}
+
+# 运行脚本
+if creImg
+then
+	creCon
+fi
